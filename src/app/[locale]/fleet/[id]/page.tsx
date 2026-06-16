@@ -7,6 +7,8 @@ import { MotorcycleImage, Motorcycle } from '@/types';
 import { ArrowLeft, Shield } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 
+export const dynamic = 'force-dynamic';
+
 export default async function MotorcycleDetailsPage({
   params
 }: {

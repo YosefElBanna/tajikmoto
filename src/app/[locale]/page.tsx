@@ -6,6 +6,8 @@ import { MotorcycleWithCover } from '@/types';
 import { Link } from '@/i18n/routing';
 import { ArrowRight } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage({
   params
 }: {

@@ -2,6 +2,8 @@ import {setRequestLocale, getTranslations} from 'next-intl/server';
 import { supabase } from '@/lib/supabase';
 import MotorcycleCard from '@/components/fleet/MotorcycleCard';
 import { MotorcycleWithCover } from '@/types';
+
+export const dynamic = 'force-dynamic';
 export default async function FleetPage({
   params
 }: {
