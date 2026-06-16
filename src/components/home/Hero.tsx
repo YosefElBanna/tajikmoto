@@ -15,7 +15,7 @@ export default function Hero() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1558981403-c5f9899a28bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80")' }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f8f7f4]/60 via-[#f8f7f4]/50 to-[#f8f7f4]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1c1c21]/50 via-[#1c1c21]/40 to-[#f8f7f4]"></div>
       </div>
 
       <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
@@ -25,7 +25,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border border-[#c89f55]/30 text-[#c89f55] bg-[#c89f55]/5 mb-6">
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase border border-[#c89f55]/50 text-[#c89f55] bg-[#c89f55]/10 mb-6 backdrop-blur-sm">
             TAJIK MOTO
           </span>
         </motion.div>
@@ -34,7 +34,8 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-          className="text-4xl sm:text-5xl md:text-7xl font-outfit font-extrabold text-[#1c1c21] tracking-tight mb-5 leading-[1.1]"
+          className="text-5xl sm:text-6xl md:text-8xl font-outfit font-extrabold text-white tracking-tight mb-5 leading-[1.1]"
+          style={{ textShadow: '0 2px 20px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.3)' }}
         >
           {t('title')}
         </motion.h1>
@@ -43,7 +44,8 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.25, ease: "easeOut" }}
-          className="text-base sm:text-lg md:text-xl text-[#71717a] font-inter mb-10 max-w-xl mx-auto leading-relaxed"
+          className="text-base sm:text-lg md:text-xl text-white/80 font-inter mb-10 max-w-xl mx-auto leading-relaxed"
+          style={{ textShadow: '0 1px 8px rgba(0,0,0,0.3)' }}
         >
           {t('subtitle')}
         </motion.p>
