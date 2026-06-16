@@ -12,14 +12,19 @@ export default function BookingForm({ motorcycle, activeBlocks = [] }: { motorcy
   const t = useTranslations('Booking');
   
   const disabledRanges = useMemo(() => {
+    // If the user wants to book hourly, don't block days that only have hourly bookings
+    const blocksToConsider = duration === 'hourly' 
+      ? activeBlocks.filter(b => b.duration_type !== 'hourly')
+      : activeBlocks;
+
     return [
       { before: new Date() },
-      ...activeBlocks.map(b => ({
+      ...blocksToConsider.map(b => ({
         from: new Date(b.start_date),
         to: new Date(b.end_date)
       }))
     ];
-  }, [activeBlocks]);
+  }, [activeBlocks, duration]);
 
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [duration, setDuration] = useState<'hourly' | 'daily' | 'weekly' | 'monthly'>('daily');
@@ -44,22 +49,26 @@ export default function BookingForm({ motorcycle, activeBlocks = [] }: { motorcy
       return { endDate: '', endDateDisplay: '', totalPrice: 0, hasOverlap: false };
     }
 
-    // End date is (Start Date + duration - 1 day) for booking logic
-    // e.g. 1 day booking: start Jun 1, end Jun 1.
     const start = startDate;
     const end   = addDays(start, days - 1);
+    
+    const blocksToConsider = duration === 'hourly' 
+      ? activeBlocks.filter(b => b.duration_type !== 'hourly')
+      : activeBlocks;
 
     // Check overlap with active blocks
-    const overlap = activeBlocks.some(block => {
+    const overlap = blocksToConsider.some(block => {
       const bStart = new Date(block.start_date);
       bStart.setHours(0,0,0,0);
       const bEnd = new Date(block.end_date);
       bEnd.setHours(23,59,59,999);
       
-      start.setHours(0,0,0,0);
-      end.setHours(23,59,59,999);
+      const s = new Date(start);
+      s.setHours(0,0,0,0);
+      const e = new Date(end);
+      e.setHours(23,59,59,999);
       
-      return start <= bEnd && end >= bStart;
+      return s <= bEnd && e >= bStart;
     });
 
     return {

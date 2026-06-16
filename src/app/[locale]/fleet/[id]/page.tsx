@@ -32,7 +32,7 @@ export default async function MotorcycleDetailsPage({
   // Fetch blocked dates
   const { data: blocks } = await supabase
     .from('booking_requests')
-    .select('start_date, end_date')
+    .select('start_date, end_date, duration_type')
     .eq('motorcycle_id', id)
     .eq('status', 'approved');
 
