@@ -11,21 +11,6 @@ import { Calendar } from '@/components/ui/calendar';
 export default function BookingForm({ motorcycle, activeBlocks = [] }: { motorcycle: Motorcycle, activeBlocks?: any[] }) {
   const t = useTranslations('Booking');
   
-  const disabledRanges = useMemo(() => {
-    // If the user wants to book hourly, don't block days that only have hourly bookings
-    const blocksToConsider = duration === 'hourly' 
-      ? activeBlocks.filter(b => b.duration_type !== 'hourly')
-      : activeBlocks;
-
-    return [
-      { before: new Date() },
-      ...blocksToConsider.map(b => ({
-        from: new Date(b.start_date),
-        to: new Date(b.end_date)
-      }))
-    ];
-  }, [activeBlocks, duration]);
-
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [duration, setDuration] = useState<'hourly' | 'daily' | 'weekly' | 'monthly'>('daily');
   const [durationCount, setDurationCount] = useState<number>(1);
@@ -39,7 +24,7 @@ export default function BookingForm({ motorcycle, activeBlocks = [] }: { motorcy
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess]           = useState(false);
 
-  const disabledDays = useMemo(() => {
+  const disabledRanges = useMemo(() => {
     // If the user wants to book hourly, don't block days that only have hourly bookings
     const blocksToConsider = duration === 'hourly' 
       ? activeBlocks.filter(b => b.duration_type !== 'hourly')

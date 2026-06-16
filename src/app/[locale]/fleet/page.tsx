@@ -4,6 +4,7 @@ import MotorcycleCard from '@/components/fleet/MotorcycleCard';
 import { MotorcycleWithCover } from '@/types';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 export default async function FleetPage({
   params
 }: {

@@ -8,6 +8,7 @@ import { ArrowLeft, Shield } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function MotorcycleDetailsPage({
   params
