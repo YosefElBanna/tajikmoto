@@ -4,7 +4,6 @@ import MotorcycleCard from '@/components/fleet/MotorcycleCard';
 import { supabase } from '@/lib/supabase';
 import { MotorcycleWithCover } from '@/types';
 import { Link } from '@/i18n/routing';
-import { mockMotorcycles } from '@/lib/mockData';
 import { ArrowRight } from 'lucide-react';
 
 export default async function HomePage({
@@ -30,9 +29,6 @@ export default async function HomePage({
     return { ...m, cover_image: coverImage };
   });
 
-  if (featuredFleet.length === 0) {
-    featuredFleet = mockMotorcycles;
-  }
 
   const t = await getTranslations('Home');
 

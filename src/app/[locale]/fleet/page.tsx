@@ -2,8 +2,6 @@ import {setRequestLocale, getTranslations} from 'next-intl/server';
 import { supabase } from '@/lib/supabase';
 import MotorcycleCard from '@/components/fleet/MotorcycleCard';
 import { MotorcycleWithCover } from '@/types';
-import { mockMotorcycles } from '@/lib/mockData';
-
 export default async function FleetPage({
   params
 }: {
@@ -28,9 +26,6 @@ export default async function FleetPage({
     return { ...m, cover_image: coverImage, images };
   });
 
-  if (fleet.length === 0) {
-    fleet = mockMotorcycles;
-  }
 
   return (
     <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-12 sm:py-24">

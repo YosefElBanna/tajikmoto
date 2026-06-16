@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import { MotorcycleWithCover } from '@/types';
 import { format, isWithinInterval } from 'date-fns';
-import { mockMotorcycles } from '@/lib/mockData';
 import { ArrowLeft, Loader2, Plus, X, Image as ImageIcon, Calendar as CalendarIcon, Trash2 } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
@@ -74,7 +73,7 @@ export default function AdminFleetPage() {
       });
       setFleet(mapped);
     } else {
-      setFleet(mockMotorcycles as any[]);
+      setFleet([]);
     }
     setLoading(false);
   };
@@ -208,10 +207,6 @@ export default function AdminFleetPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (id.startsWith('mock-')) {
-      alert(t('cannot_delete_mock'));
-      return;
-    }
     if (!confirm(t('delete_bike_confirm'))) return;
     const { error } = await supabase.from('motorcycles').delete().eq('id', id);
     if (error) alert(error.message);

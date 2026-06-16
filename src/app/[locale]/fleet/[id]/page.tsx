@@ -3,8 +3,6 @@ import { supabase } from '@/lib/supabase';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import BookingForm from '@/components/fleet/BookingForm';
-import { Motorcycle, MotorcycleImage } from '@/types';
-import { mockMotorcycles } from '@/lib/mockData';
 import { ArrowLeft, Shield } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 
@@ -27,10 +25,7 @@ export default async function MotorcycleDetailsPage({
     .single();
 
   if (error || !motorcycle) {
-    motorcycle = mockMotorcycles.find(m => m.id === id) as any;
-    if (!motorcycle) {
-      notFound();
-    }
+    notFound();
   }
 
   // Fetch blocked dates
