@@ -120,7 +120,8 @@
     "blocked_dates": "Blocked Dates",
     "files_selected": "files selected",
     "click_select_images": "Click to select images",
-    "price_hourly": "Hourly Price"
+    "price_hourly": "Hourly Price",
+    "cannot_delete_mock": "Cannot delete sample data. Please add a real motorcycle first and the sample data will disappear automatically."
   },
   "Metadata": {
     "title": "TAJIKMOTO — Premium Motorcycle Rentals",

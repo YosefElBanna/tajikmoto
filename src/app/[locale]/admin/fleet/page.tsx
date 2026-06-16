@@ -208,6 +208,10 @@ export default function AdminFleetPage() {
   };
 
   const handleDelete = async (id: string) => {
+    if (id.startsWith('mock-')) {
+      alert(t('cannot_delete_mock'));
+      return;
+    }
     if (!confirm(t('delete_bike_confirm'))) return;
     const { error } = await supabase.from('motorcycles').delete().eq('id', id);
     if (error) alert(error.message);
