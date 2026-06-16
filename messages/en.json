@@ -12,7 +12,7 @@
   },
   "Fleet": {
     "available": "Available",
-    "busy": "Busy Today",
+    "busy": "Busy until {date}",
     "view_details": "View Details",
     "daily": "Daily",
     "weekly": "Weekly",

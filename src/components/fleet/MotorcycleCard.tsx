@@ -11,7 +11,11 @@ export default function MotorcycleCard({ motorcycle }: { motorcycle: MotorcycleW
   const t = useTranslations('Fleet');
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
   
-  const isAvailable = !motorcycle.is_blocked_today;
+  const isAvailable = !motorcycle.blocked_until;
+  
+  const formattedDate = motorcycle.blocked_until 
+    ? new Date(motorcycle.blocked_until).toLocaleDateString()
+    : '';
 
   const images = motorcycle.images && motorcycle.images.length > 0 
     ? motorcycle.images 
@@ -98,7 +102,7 @@ export default function MotorcycleCard({ motorcycle }: { motorcycle: MotorcycleW
                   : 'bg-[#f87171]/90 text-white'
               }`}>
                 <span className={`w-1.5 h-1.5 rounded-full ${isAvailable ? 'bg-white' : 'bg-white'} animate-pulse`}></span>
-                {isAvailable ? t('available') : t('busy')}
+                {isAvailable ? t('available') : t('busy', { date: formattedDate })}
               </span>
           </div>
         </div>

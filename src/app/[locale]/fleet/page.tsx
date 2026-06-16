@@ -27,13 +27,18 @@ export default async function FleetPage({
     const today = new Date();
     today.setHours(0,0,0,0);
     const active_blocks = m.booking_requests?.filter((b: any) => b.status === 'approved') || [];
-    const is_blocked_today = active_blocks.some((b: any) => {
+    let blocked_until = null;
+    
+    for (const b of active_blocks) {
       const start = new Date(b.start_date); start.setHours(0,0,0,0);
       const end = new Date(b.end_date); end.setHours(23,59,59,999);
-      return today >= start && today <= end;
-    });
+      if (today >= start && today <= end) {
+        blocked_until = b.end_date;
+        break;
+      }
+    }
 
-    return { ...m, cover_image: coverImage, images, is_blocked_today };
+    return { ...m, cover_image: coverImage, images, blocked_until };
   });
 
 
