@@ -34,6 +34,7 @@ export default function AdminFleetPage() {
   const [formData, setFormData] = useState({
     brand: '',
     name: '',
+    price_hourly: 0,
     price_daily: 0,
     price_weekly: 0,
     price_monthly: 0,
@@ -83,7 +84,7 @@ export default function AdminFleetPage() {
     setEditingBike(null);
     setFormData({
       brand: '', name: '', 
-      price_daily: 0, price_weekly: 0, price_monthly: 0, short_description: ''
+      price_hourly: 0, price_daily: 0, price_weekly: 0, price_monthly: 0, short_description: ''
     });
     setSelectedFiles([]);
     setIsModalOpen(true);
@@ -94,6 +95,7 @@ export default function AdminFleetPage() {
     setFormData({
       brand: bike.brand,
       name: bike.name,
+      price_hourly: bike.price_hourly || 0,
       price_daily: bike.price_daily,
       price_weekly: bike.price_weekly,
       price_monthly: bike.price_monthly,
@@ -369,6 +371,10 @@ export default function AdminFleetPage() {
                 <div>
                   <label className="block text-xs font-medium text-[#71717a] mb-1.5">{t('name')}</label>
                   <input type="text" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className={inputClass} />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-[#71717a] mb-1.5">{t('price_hourly')}</label>
+                  <input type="number" required value={formData.price_hourly} onChange={e => setFormData({...formData, price_hourly: parseInt(e.target.value)})} className={inputClass} />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-[#71717a] mb-1.5">{t('price_daily')}</label>
