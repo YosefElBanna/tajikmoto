@@ -12,7 +12,7 @@
   },
   "Fleet": {
     "available": "Доступен",
-    "busy": "Занят до {date}",
+    "busy": "Занят сегодня",
     "view_details": "Подробнее",
     "daily": "В день",
     "weekly": "В неделю",

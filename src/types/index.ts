@@ -24,4 +24,5 @@ export interface MotorcycleImage {
 export interface MotorcycleWithCover extends Motorcycle {
   cover_image?: string;
   images?: string[];
+  is_blocked_today?: boolean;
 }

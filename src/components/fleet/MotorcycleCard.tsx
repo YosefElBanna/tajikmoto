@@ -11,11 +11,7 @@ export default function MotorcycleCard({ motorcycle }: { motorcycle: MotorcycleW
   const t = useTranslations('Fleet');
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
   
-  const isAvailable = !motorcycle.busy_until || new Date(motorcycle.busy_until) < new Date();
-  
-  const formattedDate = motorcycle.busy_until 
-    ? new Date(motorcycle.busy_until).toLocaleDateString()
-    : '';
+  const isAvailable = !motorcycle.is_blocked_today;
 
   const images = motorcycle.images && motorcycle.images.length > 0 
     ? motorcycle.images 
@@ -96,14 +92,14 @@ export default function MotorcycleCard({ motorcycle }: { motorcycle: MotorcycleW
 
           {/* Availability Badge */}
           <div className="absolute top-3 ltr:right-3 rtl:left-3 z-10">
-            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold backdrop-blur-md ${
-              isAvailable 
-                ? 'bg-[#f8f7f4]/70 text-[#4ade80] border border-[#4ade80]/20' 
-                : 'bg-[#f8f7f4]/70 text-[#f87171] border border-[#f87171]/20'
-            }`}>
-              <span className={`w-1.5 h-1.5 rounded-full ${isAvailable ? 'bg-[#4ade80]' : 'bg-[#f87171]'}`}></span>
-              {isAvailable ? t('available') : t('busy', { date: formattedDate })}
-            </span>
+              <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold backdrop-blur-md shadow-sm ${
+                isAvailable
+                  ? 'bg-[#4ade80]/90 text-white'
+                  : 'bg-[#f87171]/90 text-white'
+              }`}>
+                <span className={`w-1.5 h-1.5 rounded-full ${isAvailable ? 'bg-white' : 'bg-white'} animate-pulse`}></span>
+                {isAvailable ? t('available') : t('busy')}
+              </span>
           </div>
         </div>
 

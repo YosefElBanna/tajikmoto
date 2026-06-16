@@ -12,7 +12,7 @@
   },
   "Fleet": {
     "available": "متاح",
-    "busy": "مشغول حتى {date}",
+    "busy": "مشغول اليوم",
     "view_details": "التفاصيل",
     "daily": "يومي",
     "weekly": "أسبوعي",

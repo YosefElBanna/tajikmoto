@@ -15,7 +15,7 @@ export default async function FleetPage({
 
   const { data: motorcycles } = await supabase
     .from('motorcycles')
-    .select(`*, motorcycle_images (image_url, is_cover)`)
+    .select(`*, motorcycle_images (image_url, is_cover), booking_requests (start_date, end_date, status)`)
     .order('created_at', { ascending: false });
 
   let fleet: MotorcycleWithCover[] = (motorcycles || []).map((m: any) => {
@@ -23,7 +23,17 @@ export default async function FleetPage({
     const coverImage = sortedImages.find((img: any) => img.is_cover)?.image_url 
       || sortedImages[0]?.image_url;
     const images = sortedImages.map((img: any) => img.image_url);
-    return { ...m, cover_image: coverImage, images };
+    
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const active_blocks = m.booking_requests?.filter((b: any) => b.status === 'approved') || [];
+    const is_blocked_today = active_blocks.some((b: any) => {
+      const start = new Date(b.start_date); start.setHours(0,0,0,0);
+      const end = new Date(b.end_date); end.setHours(23,59,59,999);
+      return today >= start && today <= end;
+    });
+
+    return { ...m, cover_image: coverImage, images, is_blocked_today };
   });
 
 
