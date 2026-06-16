@@ -5,6 +5,7 @@ export interface Motorcycle {
   model_year: number;
   engine_size_cc: number;
   short_description: string | null;
+  price_hourly: number;
   price_daily: number;
   price_weekly: number;
   price_monthly: number;

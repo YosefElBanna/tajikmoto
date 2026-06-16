@@ -22,7 +22,7 @@ export default function BookingForm({ motorcycle, activeBlocks = [] }: { motorcy
   }, [activeBlocks]);
 
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
-  const [duration, setDuration] = useState<'daily' | 'weekly' | 'monthly'>('daily');
+  const [duration, setDuration] = useState<'hourly' | 'daily' | 'weekly' | 'monthly'>('daily');
   const [durationCount, setDurationCount] = useState<number>(1);
   
   const [name, setName]               = useState('');
@@ -35,6 +35,7 @@ export default function BookingForm({ motorcycle, activeBlocks = [] }: { motorcy
   const { endDate, endDateDisplay, totalPrice, hasOverlap } = useMemo(() => {
     let days  = 1;
     let price = 0;
+    if (duration === 'hourly')  { days = 1;                  price = motorcycle.price_hourly * durationCount; }
     if (duration === 'daily')   { days = 1 * durationCount;  price = motorcycle.price_daily * durationCount; }
     if (duration === 'weekly')  { days = 7 * durationCount;  price = motorcycle.price_weekly * durationCount; }
     if (duration === 'monthly') { days = 30 * durationCount; price = motorcycle.price_monthly * durationCount; }
@@ -108,9 +109,9 @@ export default function BookingForm({ motorcycle, activeBlocks = [] }: { motorcy
       });
       window.open(`https://t.me/${telegramNumber}?text=${encodeURIComponent(message)}`, '_blank');
       
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
-      alert('Failed to submit booking request. Please try again.');
+      alert('Error: ' + (err?.message || JSON.stringify(err)));
     } finally {
       setIsSubmitting(false);
     }
@@ -130,7 +131,8 @@ export default function BookingForm({ motorcycle, activeBlocks = [] }: { motorcy
 
   const inputClass = "w-full bg-[#f8f7f4] border border-[#e4e4e1] rounded-xl px-4 py-3 text-[#1c1c21] text-sm placeholder-[#71717a]/60 focus:outline-none focus:border-[#c89f55]/50 focus:ring-1 focus:ring-[#c89f55]/20 transition-all";
 
-  const durationOptions: { value: 'daily' | 'weekly' | 'monthly'; label: string; price: number }[] = [
+  const durationOptions: { value: 'hourly' | 'daily' | 'weekly' | 'monthly'; label: string; price: number }[] = [
+    { value: 'hourly',  label: t('hourly'),  price: motorcycle.price_hourly },
     { value: 'daily',   label: t('daily'),   price: motorcycle.price_daily },
     { value: 'weekly',  label: t('weekly'),  price: motorcycle.price_weekly },
     { value: 'monthly', label: t('monthly'), price: motorcycle.price_monthly },
@@ -146,7 +148,7 @@ export default function BookingForm({ motorcycle, activeBlocks = [] }: { motorcy
         {/* Duration selector */}
         <div className="space-y-3">
           <label className="block text-xs text-[#71717a] font-medium uppercase tracking-wide">{t('duration')}</label>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-4 gap-2">
             {durationOptions.map(opt => (
               <button
                 key={opt.value}
@@ -169,6 +171,7 @@ export default function BookingForm({ motorcycle, activeBlocks = [] }: { motorcy
           {/* Stepper */}
           <div className="flex items-center justify-between bg-[#f8f7f4] border border-[#e4e4e1] rounded-xl p-2 px-4 transition-all">
             <span className="text-sm font-medium text-[#4a4a52]">
+              {duration === 'hourly' && t('count_hourly')}
               {duration === 'daily' && t('count_daily')}
               {duration === 'weekly' && t('count_weekly')}
               {duration === 'monthly' && t('count_monthly')}

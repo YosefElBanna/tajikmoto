@@ -270,14 +270,14 @@ export default function AdminFleetPage() {
                     : 'bg-[#f87171]/10 text-[#f87171]'
                 }`}>
                   <span className={`w-1.5 h-1.5 rounded-full ${!isBlockedToday ? 'bg-[#4ade80]' : 'bg-[#f87171]'}`}></span>
-                  {!isBlockedToday ? t('available') : 'Busy Today'}
+                  {!isBlockedToday ? t('available') : t('busy_today')}
                 </span>
               </div>
 
               <div className="flex items-center gap-2 mt-4 pt-4 border-t border-[#e4e4e1]/60">
                 <button onClick={() => openCalendar(bike.id)} className="flex items-center gap-1.5 text-[#1c1c21] text-sm font-bold px-4 py-2 bg-[#f0eee9] hover:bg-[#e4e4e1] rounded-lg transition-colors border border-[#d4d4d0]">
                   <CalendarIcon className="w-4 h-4" />
-                  Calendar
+                  {t('calendar')}
                 </button>
                 <div className="flex gap-2 ltr:ml-auto rtl:mr-auto">
                   <button onClick={() => openEditModal(bike as any)} className="text-[#60a5fa] text-sm font-medium px-3 py-1.5 rounded-lg hover:bg-[#60a5fa]/10 transition-colors">{t('edit')}</button>
@@ -294,7 +294,7 @@ export default function AdminFleetPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1c1c21]/80 backdrop-blur-sm overflow-y-auto">
           <div className="bg-[#ffffff] rounded-2xl w-full max-w-lg my-auto overflow-hidden">
             <div className="flex items-center justify-between p-5 border-b border-[#e4e4e1] bg-[#f8f7f4]">
-              <h2 className="text-xl font-bold text-[#1c1c21]">Manage Availability</h2>
+              <h2 className="text-xl font-bold text-[#1c1c21]">{t('manage_availability')}</h2>
               <button onClick={() => setCalendarBikeId(null)} className="text-[#71717a] hover:text-[#1c1c21] p-1">
                 <X className="w-5 h-5" />
               </button>
@@ -320,13 +320,13 @@ export default function AdminFleetPage() {
                       disabled={isSaving}
                       className="w-full bg-[#1c1c21] hover:bg-[#33333b] text-white py-3 rounded-xl font-bold transition-colors disabled:opacity-50"
                     >
-                      {isSaving ? 'Saving...' : `Block out ${format(selectedRange.from, 'MMM d')} to ${format(selectedRange.to, 'MMM d')}`}
+                      {isSaving ? t('saving') : `${t('block_out')} ${format(selectedRange.from, 'MMM d')} → ${format(selectedRange.to, 'MMM d')}`}
                     </button>
                   )}
 
                   {blockedRanges.length > 0 && (
                     <div className="w-full mt-6 pt-6 border-t border-[#e4e4e1]">
-                      <h4 className="text-sm font-bold text-[#1c1c21] mb-3">Blocked Dates</h4>
+                      <h4 className="text-sm font-bold text-[#1c1c21] mb-3">{t('blocked_dates')}</h4>
                       <div className="space-y-2">
                         {blockedRanges.map(block => (
                           <div key={block.id} className="flex items-center justify-between bg-[#f8f7f4] p-3 rounded-lg border border-[#e4e4e1]">
@@ -387,7 +387,7 @@ export default function AdminFleetPage() {
                   <label className="flex flex-col items-center justify-center w-full h-[42px] bg-[#f8f7f4] border border-dashed border-[#c89f55] rounded-xl cursor-pointer hover:bg-[#f0eee9] transition-colors relative overflow-hidden">
                     <div className="flex items-center gap-2 text-[#c89f55] text-sm font-medium">
                       <ImageIcon className="w-4 h-4" />
-                      {selectedFiles.length > 0 ? `${selectedFiles.length} files selected` : 'Click to select images'}
+                      {selectedFiles.length > 0 ? `${selectedFiles.length} ${t('files_selected')}` : t('click_select_images')}
                     </div>
                     <input type="file" multiple accept="image/*" onChange={handleFileChange} className="hidden" />
                   </label>
