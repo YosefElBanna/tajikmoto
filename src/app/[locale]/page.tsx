@@ -1,5 +1,4 @@
-import {useTranslations} from 'next-intl';
-import {setRequestLocale} from 'next-intl/server';
+import {setRequestLocale, getTranslations} from 'next-intl/server';
 import Hero from '@/components/home/Hero';
 import MotorcycleCard from '@/components/fleet/MotorcycleCard';
 import { supabase } from '@/lib/supabase';
