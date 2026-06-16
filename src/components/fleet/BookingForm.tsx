@@ -39,6 +39,21 @@ export default function BookingForm({ motorcycle, activeBlocks = [] }: { motorcy
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess]           = useState(false);
 
+  const disabledDays = useMemo(() => {
+    // If the user wants to book hourly, don't block days that only have hourly bookings
+    const blocksToConsider = duration === 'hourly' 
+      ? activeBlocks.filter(b => b.duration_type !== 'hourly')
+      : activeBlocks;
+
+    return [
+      { before: new Date() },
+      ...blocksToConsider.map(b => ({
+        from: new Date(b.start_date),
+        to: new Date(b.end_date)
+      }))
+    ];
+  }, [activeBlocks, duration]);
+
   const { endDate, endDateDisplay, totalPrice, hasOverlap } = useMemo(() => {
     let days  = 1;
     let price = 0;
