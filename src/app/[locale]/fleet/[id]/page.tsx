@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabase';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import BookingForm from '@/components/fleet/BookingForm';
-import { MotorcycleImage } from '@/types';
+import { MotorcycleImage, Motorcycle } from '@/types';
 import { ArrowLeft, Shield } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 
