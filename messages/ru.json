@@ -52,7 +52,7 @@
     "count_daily": "Количество дней",
     "count_weekly": "Количество недель",
     "count_monthly": "Количество месяцев",
-    "whatsapp_message": "Здравствуйте! Хочу забронировать {brand} {name}.\nИмя: {customer_name}\nТелефон: {phone}\nГражданство: {nationality}\nДлительность: {count} {duration_type}\nДаты: {start_date} → {end_date}\nИтого: {total} EGP"
+    "whatsapp_message": "Здравствуйте! Хочу забронировать {name}.\nИмя: {customer_name}\nТелефон: {phone}\nГражданство: {nationality}\nДлительность: {count} ({duration_type})\nДаты: с {start_date} по {end_date}\nИтого: {total} EGP"
   },
   "DatePicker": {
     "select_date": "Выберите дату",

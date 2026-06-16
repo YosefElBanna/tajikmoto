@@ -52,7 +52,7 @@
     "count_daily": "عدد الأيام",
     "count_weekly": "عدد الأسابيع",
     "count_monthly": "عدد الشهور",
-    "whatsapp_message": "مرحباً! أود حجز {brand} {name}.\nالاسم: {customer_name}\nالهاتف: {phone}\nالجنسية: {nationality}\nالمدة: {count} {duration_type}\nالتواريخ: {start_date} → {end_date}\nالإجمالي: {total} ج.م"
+    "whatsapp_message": "مرحباً! أود حجز {name}\nالاسم: {customer_name}\nالهاتف: {phone}\nالجنسية: {nationality}\nالمدة: {count} ({duration_type})\nالتاريخ: من {start_date} إلى {end_date}\nالإجمالي: {total} ج.م"
   },
   "DatePicker": {
     "select_date": "اختر التاريخ",

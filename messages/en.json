@@ -52,7 +52,7 @@
     "count_daily": "Number of Days",
     "count_weekly": "Number of Weeks",
     "count_monthly": "Number of Months",
-    "whatsapp_message": "Hello! I'd like to book the {brand} {name}.\nName: {customer_name}\nPhone: {phone}\nNationality: {nationality}\nDuration: {count} {duration_type}\nDates: {start_date} → {end_date}\nTotal: {total} EGP"
+    "whatsapp_message": "Hello! I would like to book {name}.\nName: {customer_name}\nPhone: {phone}\nNationality: {nationality}\nDuration: {count} ({duration_type})\nDates: {start_date} to {end_date}\nTotal: {total} EGP"
   },
   "DatePicker": {
     "select_date": "Select date",
